@@ -3994,7 +3994,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.SpeechRecognition.Cnds.IsRecognisingSpeech,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.Sprite.Acts.SetAnim,
-		C3.Plugins.Touch.Cnds.OnTapGestureObject,
+		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Text.Acts.SetVisible,
@@ -4046,30 +4046,34 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Cnds.OnCollision,
 		C3.Plugins.Audio.Acts.StopAll,
 		C3.Behaviors.solid.Acts.SetEnabled,
-		C3.Plugins.System.Acts.SetGroupActive,
-		C3.Plugins.Sprite.Acts.ToggleBoolInstanceVar,
 		C3.Plugins.System.Acts.SetTimescale,
 		C3.Plugins.SpeechSynthesis.Acts.StopSpeaking,
+		C3.Plugins.System.Acts.SetGroupActive,
+		C3.Plugins.Sprite.Acts.ToggleBoolInstanceVar,
+		C3.Plugins.LocalStorage.Acts.CheckItemExists,
 		C3.Plugins.LocalStorage.Cnds.OnItemExists,
 		C3.Plugins.LocalStorage.Exps.ItemValue,
-		C3.Plugins.Sprite.Acts.ZMoveToObject,
 		C3.Plugins.SpeechRecognition.Cnds.SupportsSpeechRecognition,
 		C3.Plugins.Touch.Cnds.OnTouchStart,
 		C3.Plugins.Browser.Cnds.IsFullscreen,
 		C3.Plugins.PlatformInfo.Cnds.IsOnMobile,
 		C3.Plugins.Browser.Acts.RequestFullScreen,
+		C3.Plugins.Sprite.Acts.ZMoveToObject,
 		C3.Plugins.System.Cnds.OnLoadFinished,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.System.Acts.ToggleBoolVar,
 		C3.Plugins.SpeechSynthesis.Acts.SpeakText,
 		C3.Plugins.System.Cnds.CompareVar,
+		C3.Plugins.System.Acts.SubVar,
+		C3.Plugins.Touch.Cnds.OnTapGesture,
 		C3.Behaviors.Pin.Acts.PinByProperties,
 		C3.Plugins.Sprite.Cnds.CompareX,
 		C3.Behaviors.DragnDrop.Acts.Drop,
 		C3.Plugins.Sprite.Acts.SetX,
 		C3.Plugins.System.Cnds.CompareBetween,
 		C3.Plugins.Sprite.Exps.X,
-		C3.Behaviors.DragnDrop.Cnds.OnDrop
+		C3.Behaviors.DragnDrop.Cnds.OnDrop,
+		C3.Plugins.Touch.Cnds.OnTapGestureObject
 	];
 };
 self.C3_JsPropNameTable = [
@@ -4107,6 +4111,13 @@ self.C3_JsPropNameTable = [
 	{Deadline: 0},
 	{UnlockBG: 0},
 	{Medal: 0},
+	{Direction: 0},
+	{arrow: 0},
+	{ButtonSettings: 0},
+	{check: 0},
+	{Setting: 0},
+	{On: 0},
+	{Toggle: 0},
 	{Audio: 0},
 	{Browser: 0},
 	{SpeechRecognition: 0},
@@ -4114,6 +4125,7 @@ self.C3_JsPropNameTable = [
 	{Touch: 0},
 	{LocalStorage: 0},
 	{PlatformInfo: 0},
+	{OpenMoji: 0},
 	{Sine: 0},
 	{ButtonPlay: 0},
 	{ButtonRecord: 0},
@@ -4129,13 +4141,10 @@ self.C3_JsPropNameTable = [
 	{HighScoreText: 0},
 	{FlashingHighScore: 0},
 	{TextLanguage: 0},
-	{ButtonSettings: 0},
-	{Setting: 0},
-	{On: 0},
-	{Toggle: 0},
+	{TextLicense: 0},
+	{TextMSD: 0},
+	{TextSettings: 0},
 	{TextSettingsHideWords: 0},
-	{check: 0},
-	{X: 0},
 	{Pin: 0},
 	{Food: 0},
 	{UIFood: 0},
@@ -4316,7 +4325,7 @@ self.C3_ExpressionFuncs = [
 		() => 100,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0(0, 1, 2, 3, 4, 5, 6, 7, 8);
+			return () => f0(0, 1, 2, 3, 4, 5, 6, 7);
 		},
 		() => 0.2,
 		p => {
@@ -4329,7 +4338,7 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0(0, 1, 2, 3, 4, 5, 6, 7);
+			return () => f0(0, 1, 2, 3, 4, 5, 6, 7, 8);
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4339,9 +4348,41 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "Meylan");
+			return () => f0(n1.ExpObject(), "omar");
 		},
 		() => -1,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const n1 = p._GetNode(1);
+			return () => f0(n1.ExpObject(), "pâte");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const n1 = p._GetNode(1);
+			return () => f0(n1.ExpObject(), "jeu");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const n1 = p._GetNode(1);
+			return () => f0(n1.ExpObject(), "verre");
+		},
+		() => 9,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const n1 = p._GetNode(1);
+			return () => f0(n1.ExpObject(), "peur");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const n1 = p._GetNode(1);
+			return () => f0(n1.ExpObject(), "tard");
+		},
+		() => 8,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const n1 = p._GetNode(1);
+			return () => f0(n1.ExpObject(), "Meylan");
+		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
@@ -4379,7 +4420,6 @@ self.C3_ExpressionFuncs = [
 			const n1 = p._GetNode(1);
 			return () => f0(n1.ExpObject(), "raisin");
 		},
-		() => 9,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
@@ -4462,7 +4502,6 @@ self.C3_ExpressionFuncs = [
 			const n1 = p._GetNode(1);
 			return () => f0(n1.ExpObject(), "mangue");
 		},
-		() => 8,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
@@ -4777,7 +4816,7 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "bagel");
+			return () => f0(n1.ExpObject(), "fromage");
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4797,11 +4836,6 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "fromage");
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const n1 = p._GetNode(1);
 			return () => f0(n1.ExpObject(), "hamburger");
 		},
 		p => {
@@ -4812,7 +4846,7 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "hot dog");
+			return () => f0(n1.ExpObject(), "hot-dog");
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4950,11 +4984,14 @@ self.C3_ExpressionFuncs = [
 		() => "You scored:",
 		() => 15,
 		() => "Settings3",
+		() => "switch",
 		() => "StudyEnglish",
 		() => "StudySound",
 		() => "StudyTap",
-		() => "switch",
+		() => -5,
 		() => "Local Storage",
+		() => "Title UI",
+		() => "Title Food",
 		() => 1.3,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4963,6 +5000,38 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0(180, 200);
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2", "Veggies1");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2", "Veggies1", "Veggies2");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2", "Veggies1", "Veggies2", "Meat");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2", "Veggies1", "Veggies2", "Meat", "Seafood");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2", "Veggies1", "Veggies2", "Meat", "Seafood", "Drinks");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2", "Veggies1", "Veggies2", "Meat", "Seafood", "Drinks", "Breakfast");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Fruit1", "Fruit2", "Veggies1", "Veggies2", "Meat", "Seafood", "Drinks", "Breakfast", "Snacks");
 		},
 		() => "Language Specific Bugs",
 		p => {
@@ -4992,11 +5061,8 @@ self.C3_ExpressionFuncs = [
 			const v2 = p._GetNode(2).GetVar();
 			return () => f0(n1.ExpObject(), v2.GetValue());
 		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const v1 = p._GetNode(1).GetVar();
-			return () => Math.round(f0(0, v1.GetValue()));
-		},
+		() => "Skip",
+		() => "Back",
 		() => "Fruit 1",
 		() => "Fruit-1",
 		() => "apple",
@@ -5079,16 +5145,14 @@ self.C3_ExpressionFuncs = [
 		() => "bacon",
 		() => "le beurre",
 		() => "butter",
-		() => "le bagel",
-		() => "bagel",
+		() => "le fromage",
+		() => "cheese",
 		() => "l'oeuf",
 		() => "egg",
 		() => "le pain",
 		() => "bread",
 		() => "le miel",
 		() => "honey",
-		() => "le fromage",
-		() => "cheese",
 		() => "Drinks-1",
 		() => "le jus",
 		() => "juice",
